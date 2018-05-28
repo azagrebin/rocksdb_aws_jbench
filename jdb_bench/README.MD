@@ -3,11 +3,6 @@
 Original benchmarks are described [here](https://rocksdb.org.cn/doc/RocksJava-Performance-on-Flash-Storage.html).
 These benchmarks use provided by rocksdb `rocksdb/java/jdb_bench.sh` utility.
 
-Clone rocksdb and set `rocksdb` var in `Makefile` to its location.
-```bash
-git clone https://github.com/facebook/rocksdb.git
-```
-
 ## Setup in AWS
 
 - create AWS account, web console user name and password (ask administrator)
@@ -17,7 +12,7 @@ git clone https://github.com/facebook/rocksdb.git
 (might require creating cli access key/secret)
 
 - create [pem file](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html) for ssh access
-and download it into rocksdb/java/jbenchmark/rocksdb_test.pem
+and download it into rocksdb_aws_jbench/jdb_bench/rocksdb_test.pem
 
 - install [sshfs](https://github.com/osxfuse/osxfuse/wiki/SSHFS) if you want to mount ec2 home dir locally
 
@@ -64,24 +59,27 @@ make ssh ip=<public_instance_ip>
 ```bash
 git clone https://github.com/azagrebin/rocksdb_aws_jbench.git
 cd rocksdb
-git checkout ebs
+```
+
+- clone rocksdb and set `rocksdb` var in `rocksdb_aws_jbench/jdb_bench/Makefile` to its location.
+```bash
+git clone https://github.com/facebook/rocksdb.git
 ```
 
 - download last version of rocksdb jar
 ```bash
-cd java
+cd rocksdb/java
 mkdir -p target
 cd target
 wget http://central.maven.org/maven2/org/rocksdb/rocksdbjni/5.11.3/rocksdbjni-5.11.3.jar
-cd ../jbenchmark
 ```
 
-- set correct instance internal store device name in rocksdb/java/jbenchmark/instance_startup.sh
+- set correct instance internal store device name in rocksdb_aws_jbench/jdb_bench/instance_startup.sh
 ```bash
 lsblk
 ```
 
-- set correct efs id in rocksdb/java/jbenchmark/instance_startup.sh
+- set correct efs id in rocksdb_aws_jbench/jdb_bench/instance_startup.sh
 
 - format ebs if its first use (might also need correct device name if there are more of them)
 ```bash
@@ -98,7 +96,7 @@ make build
 ### After instance restart
 
 ```bash
-cd <rocksdb_path>/rocksdb/java/jbenchmark
+cd rocksdb_aws_jbench/jdb_bench
 ./instance_startup.sh
 ```
 

@@ -1,0 +1,51 @@
+{
+  "Monitoring": {
+    "Enabled": false
+  },
+  "TagSpecifications": [
+    {
+      "ResourceType": "instance",
+      "Tags": [
+        {
+          "Value": "RocksDB_PerfTest",
+          "Key": "Name"
+        },
+        {
+          "Value": "true",
+          "Key": "RocksDbPerfTest"
+        }
+      ]
+    }
+  ],
+  "ImageId": "ami-922914f7",
+  "BlockDeviceMappings": [
+    {
+      "DeviceName": "/dev/xvda",
+      "Ebs": {
+        "VolumeSize": 30,
+        "VolumeType": "gp2",
+        "DeleteOnTermination": false
+      }
+    }
+  ],
+  "KeyName": "RocksDbPerfTest",
+  "EbsOptimized": true,
+  "Placement": {
+    "Tenancy": "default",
+    "GroupName": ""
+  },
+  "InstanceType": "c5d.xlarge",
+  "NetworkInterfaces": [
+    {
+      "DeviceIndex": 0,
+      "Description": "",
+      "SubnetId": "subnet-396e9d51",
+      "DeleteOnTermination": true,
+      "Groups": [
+        "sg-58db8330"
+      ],
+      "Ipv6Addresses": [],
+      "AssociatePublicIpAddress": true
+    }
+  ]
+}

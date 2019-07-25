@@ -44,6 +44,8 @@ sudo bash -c 'echo "*        soft nofile 500000" >> /etc/security/limits.conf'
 cat >~/.gitconfig <<EOL
 [alias]
 	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+    lg5 = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative -n 5
+	lg10 = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative -n 10
 	up = "!git remote update -p; git merge --ff-only @{u}"
 	ci = commit
 	co = checkout
